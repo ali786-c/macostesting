@@ -42,9 +42,14 @@ jobs:
                      build \
                      CODE_SIGNING_ALLOWED=NO
 
+      - name: Zip for Appetize
+        run: |
+          cd build-out/Build/Products/Debug-iphonesimulator/
+          zip -r ../../../App.zip App.app
+
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-simulator-build
-          path: build-out/Build/Products/Debug-iphonesimulator/App.app
+          path: App.zip
           retention-days: 5
