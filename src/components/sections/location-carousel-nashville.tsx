@@ -1,0 +1,92 @@
+import React from "react";
+import ParkingCarousel from "./parking-carousel";
+
+const spaces = [
+  {
+    id: 33,
+    image: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800",
+    type: 'parking' as const,
+    title: "Parking sécurisé · Nice Garibaldi",
+    location: "Nice Centre",
+    priceHourly: 5,
+    priceDaily: 22,
+    priceMonthly: 400,
+    rating: "5,0",
+  },
+  {
+    id: 34,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 13m² · Nice",
+    location: "Nice Libération",
+    priceDaily: 12,
+    priceMonthly: 210,
+    rating: "4,8",
+  },
+  {
+    id: 35,
+    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800",
+    type: 'cellar' as const,
+    title: "Cave 6m² · Nice Riquier",
+    location: "Nice Est",
+    priceDaily: 6,
+    priceMonthly: 110,
+    rating: "4,7",
+  },
+  {
+    id: 36,
+    image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800",
+    type: 'parking' as const,
+    title: "Garage · Nice Musiciens",
+    location: "Nice Centre",
+    priceHourly: 4.5,
+    priceDaily: 20,
+    priceMonthly: 370,
+    rating: "4,9",
+  },
+  {
+    id: 37,
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 17m² · Nice",
+    location: "Nice Pasteur",
+    priceDaily: 14,
+    priceMonthly: 260,
+    rating: "4,8",
+  },
+  {
+    id: 38,
+    image: "https://images.unsplash.com/photo-1574552850131-cc374ee8f7b0?w=800",
+    type: 'parking' as const,
+    title: "Place parking · Nice Jean Médecin",
+    location: "Nice 1er",
+    priceHourly: 5.5,
+    priceDaily: 24,
+    priceMonthly: 440,
+    rating: "4,9",
+  },
+  {
+    id: 39,
+    image: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800",
+    type: 'cellar' as const,
+    title: "Cave 9m² · Nice Port",
+    location: "Nice Vieux-Nice",
+    priceDaily: 8,
+    priceMonthly: 145,
+    rating: "5,0",
+  },
+  {
+    id: 40,
+    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 25m² · Nice",
+    location: "Nice Arenas",
+    priceDaily: 18,
+    priceMonthly: 330,
+    rating: "4,7",
+  },
+];
+
+export default function LocationCarouselNashville() {
+  return <ParkingCarousel title="Espaces disponibles · Nice" spaces={spaces} />;
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Rentoall</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+
+	<!-- Chiffrement : l'app n'utilise pas de chiffrement non-exempt (HTTPS uniquement, fourni par iOS) -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+
+	<!-- App Transport Security : exceptions spécifiques au lieu de NSAllowsArbitraryLoads -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>rentoall.onrender.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+			<key>api.maptiler.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>slelguoygbfzlpylpxfs.supabase.co</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+
+	<!-- Permissions caméra / photos -->
+	<key>NSCameraUsageDescription</key>
+	<string>Rentoall a besoin d'accéder à la caméra pour prendre des photos de vos biens et de votre profil.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Rentoall a besoin d'accéder à vos photos pour ajouter des images à vos annonces et à votre profil.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Rentoall a besoin de sauvegarder des photos dans votre bibliothèque.</string>
+
+	<!-- Permissions localisation -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Rentoall utilise votre localisation pour afficher les annonces et parkings à proximité.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Rentoall utilise votre localisation pour afficher les annonces et parkings à proximité.</string>
+
+	<!-- Microphone (requis si l'app accède au micro via WebRTC ou media API) -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Rentoall peut accéder au microphone pour certaines fonctionnalités interactives.</string>
+
+	<!-- Notifications push -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+
+	<!-- Interface -->
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<!-- iPhone : portrait uniquement pour une expérience cohérente -->
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<!-- iPad : toutes orientations -->
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+</dict>
+</plist>

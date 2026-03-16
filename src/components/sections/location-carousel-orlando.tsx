@@ -1,0 +1,92 @@
+import React from "react";
+import ParkingCarousel from "./parking-carousel";
+
+const spaces = [
+  {
+    id: 17,
+    image: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800",
+    type: 'parking' as const,
+    title: "Parking sécurisé · Lyon Bellecour",
+    location: "Lyon 2ème",
+    priceHourly: 3.5,
+    priceDaily: 16,
+    priceMonthly: 290,
+    rating: "4,9",
+  },
+  {
+    id: 18,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 18m² · Lyon",
+    location: "Lyon 7ème",
+    priceDaily: 14,
+    priceMonthly: 250,
+    rating: "4,8",
+  },
+  {
+    id: 19,
+    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800",
+    type: 'cellar' as const,
+    title: "Cave 9m² · Lyon Part-Dieu",
+    location: "Lyon 3ème",
+    priceDaily: 7,
+    priceMonthly: 120,
+    rating: "4,7",
+  },
+  {
+    id: 20,
+    image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800",
+    type: 'parking' as const,
+    title: "Garage · Lyon Croix-Rousse",
+    location: "Lyon 4ème",
+    priceHourly: 4,
+    priceDaily: 17,
+    priceMonthly: 310,
+    rating: "5,0",
+  },
+  {
+    id: 21,
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 14m² · Lyon",
+    location: "Lyon 8ème",
+    priceDaily: 11,
+    priceMonthly: 200,
+    rating: "4,8",
+  },
+  {
+    id: 22,
+    image: "https://images.unsplash.com/photo-1574552850131-cc374ee8f7b0?w=800",
+    type: 'parking' as const,
+    title: "Place parking · Lyon Perrache",
+    location: "Lyon 2ème",
+    priceHourly: 3,
+    priceDaily: 14,
+    priceMonthly: 260,
+    rating: "4,6",
+  },
+  {
+    id: 23,
+    image: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800",
+    type: 'cellar' as const,
+    title: "Cave sécurisée 10m² · Lyon",
+    location: "Lyon 6ème",
+    priceDaily: 8,
+    priceMonthly: 140,
+    rating: "4,9",
+  },
+  {
+    id: 24,
+    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 22m² · Lyon",
+    location: "Lyon 9ème",
+    priceDaily: 16,
+    priceMonthly: 300,
+    rating: "4,7",
+  },
+];
+
+export default function LocationCarouselOrlando() {
+  return <ParkingCarousel title="Espaces disponibles · Lyon" spaces={spaces} />;
+}

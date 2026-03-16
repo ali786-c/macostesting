@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "278476150746",
+    "project_id": "rentoall-8e75b",
+    "storage_bucket": "rentoall-8e75b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278476150746:android:e6275f013ab96e058952e3",
+        "android_client_info": {
+          "package_name": "com.rentoall.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv6NFAdJdsLXJTjsOYLFpGV3ZUolWmbTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

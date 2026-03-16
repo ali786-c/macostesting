@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Configuration de sécurité réseau Android.
+  - Tout le trafic de l'app doit passer en HTTPS (cleartext bloqué par défaut sur Android 9+).
+  - Les domaines de l'API backend sont listés explicitement.
+  - Aucun trafic HTTP en clair autorisé en production.
+-->
+<network-security-config>
+    <!-- Configuration par défaut : HTTPS uniquement, pas de cleartext -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <!-- Certificats système de confiance -->
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- API backend Rentoall -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">rentoall.onrender.com</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+    <!-- MapTiler (tuiles de carte) -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">api.maptiler.com</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+    <!-- Supabase (stockage des photos) -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">supabase.co</domain>
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </domain-config>
+
+    <!-- Debug uniquement : localhost autorisé en developpement (Capacitor live reload) -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">localhost</domain>
+        <domain includeSubdomains="false">10.0.2.2</domain>
+    </domain-config>
+</network-security-config>

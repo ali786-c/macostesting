@@ -1,0 +1,92 @@
+import React from "react";
+import ParkingCarousel from "./parking-carousel";
+
+const spaces = [
+  {
+    id: 49,
+    image: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800",
+    type: 'parking' as const,
+    title: "Parking sécurisé · Strasbourg Cathédrale",
+    location: "Strasbourg Centre",
+    priceHourly: 3.5,
+    priceDaily: 15,
+    priceMonthly: 270,
+    rating: "4,9",
+  },
+  {
+    id: 50,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 16m² · Strasbourg",
+    location: "Strasbourg Neudorf",
+    priceDaily: 13,
+    priceMonthly: 240,
+    rating: "4,8",
+  },
+  {
+    id: 51,
+    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800",
+    type: 'cellar' as const,
+    title: "Cave 7m² · Strasbourg Krutenau",
+    location: "Strasbourg Est",
+    priceDaily: 6,
+    priceMonthly: 110,
+    rating: "4,7",
+  },
+  {
+    id: 52,
+    image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800",
+    type: 'parking' as const,
+    title: "Garage · Strasbourg Esplanade",
+    location: "Strasbourg Centre",
+    priceHourly: 4,
+    priceDaily: 17,
+    priceMonthly: 300,
+    rating: "5,0",
+  },
+  {
+    id: 53,
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 14m² · Strasbourg",
+    location: "Strasbourg Meinau",
+    priceDaily: 11,
+    priceMonthly: 200,
+    rating: "4,8",
+  },
+  {
+    id: 54,
+    image: "https://images.unsplash.com/photo-1574552850131-cc374ee8f7b0?w=800",
+    type: 'parking' as const,
+    title: "Place parking · Strasbourg Kléber",
+    location: "Strasbourg 1er",
+    priceHourly: 4.5,
+    priceDaily: 19,
+    priceMonthly: 350,
+    rating: "4,9",
+  },
+  {
+    id: 55,
+    image: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800",
+    type: 'cellar' as const,
+    title: "Cave 8m² · Strasbourg Petite France",
+    location: "Strasbourg Vieux",
+    priceDaily: 7,
+    priceMonthly: 125,
+    rating: "5,0",
+  },
+  {
+    id: 56,
+    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 21m² · Strasbourg",
+    location: "Strasbourg Robertsau",
+    priceDaily: 16,
+    priceMonthly: 290,
+    rating: "4,7",
+  },
+];
+
+export default function LocationCarouselSavannah() {
+  return <ParkingCarousel title="Espaces disponibles · Strasbourg" spaces={spaces} />;
+}

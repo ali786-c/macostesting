@@ -1,0 +1,92 @@
+import React from "react";
+import ParkingCarousel from "./parking-carousel";
+
+const spaces = [
+  {
+    id: 41,
+    image: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800",
+    type: 'parking' as const,
+    title: "Parking couvert · Nantes Commerce",
+    location: "Nantes Centre",
+    priceHourly: 2.5,
+    priceDaily: 11,
+    priceMonthly: 200,
+    rating: "4,8",
+  },
+  {
+    id: 42,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 12m² · Nantes",
+    location: "Nantes Malakoff",
+    priceDaily: 10,
+    priceMonthly: 180,
+    rating: "4,9",
+  },
+  {
+    id: 43,
+    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800",
+    type: 'cellar' as const,
+    title: "Cave 6m² · Nantes Bouffay",
+    location: "Nantes Vieux",
+    priceDaily: 5,
+    priceMonthly: 95,
+    rating: "4,7",
+  },
+  {
+    id: 44,
+    image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800",
+    type: 'parking' as const,
+    title: "Garage · Nantes Graslin",
+    location: "Nantes 1er",
+    priceHourly: 3,
+    priceDaily: 13,
+    priceMonthly: 240,
+    rating: "4,9",
+  },
+  {
+    id: 45,
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 14m² · Nantes",
+    location: "Nantes Doulon",
+    priceDaily: 11,
+    priceMonthly: 195,
+    rating: "4,8",
+  },
+  {
+    id: 46,
+    image: "https://images.unsplash.com/photo-1574552850131-cc374ee8f7b0?w=800",
+    type: 'parking' as const,
+    title: "Place parking · Nantes République",
+    location: "Nantes Centre",
+    priceHourly: 2.8,
+    priceDaily: 12,
+    priceMonthly: 220,
+    rating: "5,0",
+  },
+  {
+    id: 47,
+    image: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=800",
+    type: 'cellar' as const,
+    title: "Cave 8m² · Nantes Decré",
+    location: "Nantes 2ème",
+    priceDaily: 6,
+    priceMonthly: 110,
+    rating: "4,8",
+  },
+  {
+    id: 48,
+    image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800",
+    type: 'storage' as const,
+    title: "Box stockage 19m² · Nantes",
+    location: "Nantes Bottière",
+    priceDaily: 14,
+    priceMonthly: 260,
+    rating: "4,7",
+  },
+];
+
+export default function LocationCarouselNewYork() {
+  return <ParkingCarousel title="Espaces disponibles · Nantes" spaces={spaces} />;
+}
