@@ -14,6 +14,7 @@ const config: CapacitorConfig = {
       "https://rentoall.onrender.com",
       "api.maptiler.com",
       "*.maptiler.com",
+      "demotiles.maplibre.org",
     ],
     // Option 1 — App charge le site en ligne (recommandé) : décommentez et mettez l’URL de prod.
     // url: 'https://votre-domaine.com',
@@ -26,7 +27,7 @@ const config: CapacitorConfig = {
     allowMixedContent: false,
   },
   ios: {
-    contentInset: "automatic",
+    contentInset: "never",
   },
   plugins: {
     // Utiliser le HTTP natif pour éviter les blocages Network Error (CORS, ATS) sur iOS/Android

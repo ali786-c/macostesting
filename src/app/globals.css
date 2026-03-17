@@ -60,14 +60,17 @@
     from {
       height: 0;
     }
+
     to {
       height: var(--radix-accordion-content-height);
     }
   }
+
   @keyframes accordion-up {
     from {
       height: var(--radix-accordion-content-height);
     }
+
     to {
       height: 0;
     }
@@ -75,6 +78,7 @@
 }
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -111,6 +115,15 @@
     --radius: var(--radius-lg);
   }
 
+  html,
+  body {
+    overscroll-behavior: none;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     font-family: var(--font-body);
     font-size: 16px;
@@ -118,33 +131,83 @@
     font-weight: 400;
     color: var(--color-text-primary);
     background-color: var(--color-background);
+    /* Forcer le blocage du pull-down sur iOS */
+    position: relative;
+    width: 100%;
+    margin: 0;
   }
 
-  /* Mobile (iOS/Android) : taille de police légèrement augmentée (+1 à 2pt) pour une meilleure lisibilité */
+  /* Target fixed headers/main to prevent bounce transmission */
+  header,
+  .fixed {
+    touch-action: none;
+  }
+
+  /* Mobile (iOS/Android) */
   @media (max-width: 767px) {
     html {
-      font-size: 17px; /* base 16px + ~1pt — scale toutes les classes rem (text-xs, text-sm, etc.) */
+      font-size: 17px;
     }
+
     body {
       font-size: 17px;
       line-height: 26px;
-      overflow-x: hidden;
-      overscroll-behavior-y: none; /* Désactive le rebond (rubber-banding) sur iOS */
-      touch-action: pan-y; /* Autorise le scroll vertical mais empêche les gestes parasites */
-      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
+      -webkit-user-drag: none;
     }
-    h1 { font-size: 1.625rem; line-height: 1.25; }  /* ~27.6px */
-    h2 { font-size: 1.375rem; line-height: 1.3; }   /* ~23.4px */
-    h3 { font-size: 1.125rem; line-height: 1.3; }   /* ~19px */
-    p, .body-strong { font-size: 1rem; line-height: 1.5; }
-    .meta, .secondary { font-size: 0.9375rem; }     /* ~16px */
-    small { font-size: 0.8125rem; }                 /* ~13.8px */
-    button, .btn { font-size: 0.9375rem; }
-    label, input, textarea, select { font-size: 1rem; line-height: 1.5; }
+
+    h1 {
+      font-size: 1.625rem;
+      line-height: 1.25;
+    }
+
+    /* ~27.6px */
+    h2 {
+      font-size: 1.375rem;
+      line-height: 1.3;
+    }
+
+    /* ~23.4px */
+    h3 {
+      font-size: 1.125rem;
+      line-height: 1.3;
+    }
+
+    /* ~19px */
+    p,
+    .body-strong {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .meta,
+    .secondary {
+      font-size: 0.9375rem;
+    }
+
+    /* ~16px */
+    small {
+      font-size: 0.8125rem;
+    }
+
+    /* ~13.8px */
+    button,
+    .btn {
+      font-size: 0.9375rem;
+    }
+
+    label,
+    input,
+    textarea,
+    select {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
   }
 
   /* Hero / Display - Grand titre (homepage, grosse section) */
-  .hero, h1.hero {
+  .hero,
+  h1.hero {
     font-size: 32px;
     line-height: 40px;
     font-weight: 800;
@@ -184,14 +247,16 @@
   }
 
   /* Body strong - Mise en avant (prix, points clés) */
-  p strong, .body-strong {
+  p strong,
+  .body-strong {
     font-size: 16px;
     line-height: 24px;
     font-weight: 600;
   }
 
   /* Secondary / Meta - Meta (adresse, infos secondaires) */
-  .meta, .secondary {
+  .meta,
+  .secondary {
     font-size: 14px;
     line-height: 20px;
     font-weight: 400;
@@ -206,14 +271,18 @@
   }
 
   /* Button - Boutons principaux/secondaires */
-  button, .btn {
+  button,
+  .btn {
     font-size: 14px;
     line-height: 18px;
     font-weight: 600;
   }
 
   /* Input / Form - Texte dans champs */
-  label, input, textarea, select {
+  label,
+  input,
+  textarea,
+  select {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
@@ -240,19 +309,23 @@
     .layout-content-wrapper {
       padding-top: max(0px, env(safe-area-inset-top, 0px));
     }
+
     /* Page Paramètres (iOS + Android) : remonter toute la page pour limiter le blanc en haut (client + hôte) */
     .parametres-page {
       margin-top: calc(-1 * env(safe-area-inset-top, 0px));
     }
+
     /* Bloc "Paramètres" / "Déconnexion" : juste sous la barre de statut + nav (56px), pas de double marge */
     .parametres-page-header {
       padding-top: calc(env(safe-area-inset-top, 0px) + 56px);
     }
+
     /* Page Calendriers (iOS + Android) : remonter le contenu pour qu'il soit plus proche du bord */
     .mon-calendrier-page {
       margin-top: calc(-1 * min(42px, env(safe-area-inset-top, 0px) * 0.8));
     }
   }
+
   @media (min-width: 768px) {
     .layout-content-wrapper {
       padding-top: 5rem;
@@ -263,12 +336,14 @@
   .search-page-main {
     padding-top: 0;
   }
+
   /* Mobile / iOS: le contenu commence juste sous le header fixe, pas trop bas */
   @media (max-width: 767px) {
     main.mobile-page-main.search-page-main {
       padding-top: max(calc(env(safe-area-inset-top, 0px) + 3rem), 3rem) !important;
     }
   }
+
   @media (min-width: 768px) {
     .search-page-main {
       padding-top: 0;
@@ -280,15 +355,18 @@
     .mobile-page-main {
       padding-bottom: max(5.5rem, calc(env(safe-area-inset-bottom, 0px) + 5rem));
     }
+
     /* Remonter le contenu au max : pas de padding-top sur main (le bandeau est supprimé au niveau du layout) */
     main.mobile-page-main {
       padding-top: 0 !important;
     }
+
     /* Zones tactiles minimales pour boutons/liens importants */
     .touch-target {
       min-height: 44px;
       min-width: 44px;
     }
+
     .mobile-content-px {
       padding-left: 0.75rem;
       padding-right: 0.75rem;
@@ -305,20 +383,27 @@
 
   /* iOS/Android: éviter le scroll horizontal, optimiser tactile */
   @media (max-width: 767px) {
-    html, body {
+
+    html,
+    body {
       overflow-x: hidden;
       max-width: 100vw;
     }
+
     /* Réduire le flash au tap sur iOS */
-    button, a, input, select, textarea {
+    button,
+    a,
+    input,
+    select,
+    textarea {
       -webkit-tap-highlight-color: rgba(16, 185, 129, 0.15);
     }
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -328,25 +413,31 @@
   .calendar-scroll-container::-webkit-scrollbar {
     height: 12px;
   }
+
   .calendar-scroll-container::-webkit-scrollbar-track {
     background: #f1f5f9;
     border-radius: 6px;
     margin: 4px 8px;
   }
+
   .calendar-scroll-container::-webkit-scrollbar-thumb {
     background: #10b981;
     border-radius: 6px;
     border: 2px solid #f1f5f9;
   }
+
   .calendar-scroll-container::-webkit-scrollbar-thumb:hover {
     background: #059669;
   }
 
   /* Animations personnalisées pour la landing page */
   @keyframes float {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-20px);
     }
@@ -356,15 +447,19 @@
     0% {
       background-position: -1000px 0;
     }
+
     100% {
       background-position: 1000px 0;
     }
   }
 
   @keyframes gradient-shift {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
@@ -376,12 +471,10 @@
 
   .animate-shimmer {
     animation: shimmer 3s linear infinite;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%);
     background-size: 1000px 100%;
   }
 
@@ -391,7 +484,8 @@
   }
 
   /* Global overflow-x prevention - Mobile guardrail */
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
     max-width: 100vw;
   }
@@ -412,7 +506,8 @@
     }
 
     /* Hero mobile */
-    .hero, h1.hero {
+    .hero,
+    h1.hero {
       font-size: 28px;
       line-height: 36px;
     }
@@ -433,7 +528,9 @@
     }
 
     /* Touch-friendly buttons - minimum 44px touch target */
-    button, a[role="button"], .btn {
+    button,
+    a[role="button"],
+    .btn {
       min-height: 44px;
       min-width: 44px;
     }
@@ -449,7 +546,8 @@
       max-width: 100%;
     }
 
-    img, video {
+    img,
+    video {
       height: auto;
       max-width: 100%;
     }
@@ -466,7 +564,8 @@
     }
 
     /* Hero mobile */
-    .hero, h1.hero {
+    .hero,
+    h1.hero {
       font-size: 28px;
       line-height: 36px;
     }
@@ -635,12 +734,12 @@
     body {
       padding-bottom: max(5.5rem, calc(env(safe-area-inset-bottom, 0px) + 5rem)) !important;
     }
-    
+
     /* Classe utilitaire pour tout conteneur scrollable sur mobile (liste, contenu de page) */
     .pb-mobile-footer {
       padding-bottom: max(5.5rem, calc(env(safe-area-inset-bottom, 0px) + 5rem)) !important;
     }
-    
+
     footer[class*="mobile-footer"],
     footer[class*="MobileFooter"] {
       position: fixed !important;
@@ -659,17 +758,19 @@
   .capacitor-app.layout-content-wrapper {
     padding-bottom: max(5.5rem, calc(env(safe-area-inset-bottom, 0px) + 5rem)) !important;
   }
-  
+
   .safe-area-inset-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
 
   /* Page détail d'un bien (parking) : contenu plus haut sur mobile (aligné layout pt-12) */
   @media (max-width: 767px) {
+
     /* Fiche bien (iOS + Android) : descendre le contenu pour que les titres soient visibles sous la barre de statut */
     .parking-detail-main {
       padding-top: max(1rem, calc(env(safe-area-inset-top, 0px) + 0.5rem)) !important;
     }
+
     /* Typo mobile : lisibilité — base 16px, line-height confortable */
     .parking-detail-main {
       font-size: 16px;
@@ -677,6 +778,7 @@
       -webkit-font-smoothing: antialiased;
     }
   }
+
   @media (min-width: 768px) {
     .parking-detail-main {
       padding-top: max(calc(env(safe-area-inset-top, 0px) + 5rem), 5rem);
@@ -691,13 +793,15 @@
       overflow: hidden;
       border: 1px solid rgba(0, 0, 0, 0.08) !important;
     }
+
     .map-container-mobile .maplibregl-ctrl-group button {
       min-width: 44px !important;
       min-height: 44px !important;
       width: 44px !important;
       height: 44px !important;
     }
-    .map-container-mobile .maplibregl-ctrl-group button + button {
+
+    .map-container-mobile .maplibregl-ctrl-group button+button {
       border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
     }
   }
@@ -720,12 +824,14 @@
       z-index: 9999;
     }
   }
+
   @media (min-width: 768px) {
     .messages-input-bar-mobile {
       position: relative;
       bottom: auto;
     }
   }
+
   @media (min-width: 768px) {
     .reservation-confirmation-main {
       padding-top: max(calc(env(safe-area-inset-top, 0px) + 5rem), 5rem);
@@ -736,6 +842,7 @@
   .hero-home-safe-top {
     padding-top: calc(env(safe-area-inset-top, 0px) + 5rem);
   }
+
   @media (min-width: 768px) {
     .hero-home-safe-top {
       padding-top: 8rem;
@@ -746,6 +853,7 @@
   .hero-home-safe-band {
     min-height: calc(env(safe-area-inset-top, 0px) + 4rem);
   }
+
   @media (min-width: 768px) {
     .hero-home-safe-band {
       min-height: 0 !important;

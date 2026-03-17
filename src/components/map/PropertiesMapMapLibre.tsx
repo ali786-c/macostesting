@@ -78,8 +78,8 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
   const [isLocating, setIsLocating] = useState(false);
   const [geolocError, setGeolocError] = useState<string | null>(null);
 
-  // Fallback URL pour MapTiler (version de secours si secret manquant)
-  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL || 'https://api.maptiler.com/maps/streets-v2/style.json?key=get_your_own_key';
+  // Fallback URL MapLibre Demo (fonctionne sans clé pour validation)
+  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL || 'https://demotiles.maplibre.org/style.json';
 
   // Handler pour suivre le zoom et notifier le centre après un déplacement de la carte
   const handleMoveEnd = useCallback(() => {
@@ -119,13 +119,13 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
   const initialViewState = useMemo(() => {
     // Si un centre personnalisé est fourni, l'utiliser en priorité
     if (center) {
-      return { 
-        latitude: center.lat, 
-        longitude: center.lng, 
-        zoom: center.zoom || 12 
+      return {
+        latitude: center.lat,
+        longitude: center.lng,
+        zoom: center.zoom || 12
       };
     }
-    
+
     // Sinon, calculer le centre basé sur les propriétés
     if (!properties?.length) {
       return { latitude: 48.8566, longitude: 2.3522, zoom: 5.8 };
@@ -150,7 +150,7 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
     console.log('🗺️ [MAP] center?.zoom:', center?.zoom);
     console.log('🗺️ [MAP] isMapLoaded:', isMapLoaded);
     console.log('🗺️ [MAP] mapRef.current:', !!mapRef.current);
-    
+
     if (!center || !isMapLoaded || !mapRef.current) {
       if (!center) {
         console.log('🗺️ [MAP] Pas de centre fourni, géolocalisation ou centre par défaut sera utilisé');
@@ -162,18 +162,18 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
       console.log('🗺️ [MAP] ========================================');
       return;
     }
-    
+
     const map = mapRef.current.getMap();
     if (!map) {
       console.log('🗺️ [MAP] map instance n\'est pas encore disponible');
       console.log('🗺️ [MAP] ========================================');
       return;
     }
-    
+
     // ✅ PRIORITÉ: Zoom sur la ville sélectionnée (écrase la géolocalisation si elle était active)
     console.log('🗺️ [MAP] ⚡⚡⚡ Zoom automatique sur la ville sélectionnée (PRIORITÉ)');
     console.log('🗺️ [MAP] Position cible:', { lat: center.lat, lng: center.lng, zoom: center.zoom || 13 });
-    
+
     // Utiliser flyTo pour un zoom fluide - c'est le seul mécanisme valide pour les updates
     map.flyTo({
       center: [center.lng, center.lat],
@@ -181,7 +181,7 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
       duration: 1200,
       essential: true // Force l'animation même si l'utilisateur interagit avec la carte
     });
-    
+
     console.log('🗺️ [MAP] ✅ flyTo appelé avec succès - La ville sélectionnée a la priorité');
     console.log('🗺️ [MAP] ========================================');
   }, [center?.lat, center?.lng, center?.zoom, isMapLoaded]); // ✅ FIX: Dépendances primitives pour garantir la détection
@@ -362,18 +362,18 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
         console.debug('[MAP] cluster click - clusterId=', clusterId);
 
         const [lng, lat] = (f.geometry as any).coordinates;
-        
+
         // Zoom maximum (18) directement sur le cluster pour un zoom à 100%
         const targetZoom = 18;
-        
+
         console.debug('[MAP] Zooming to cluster with maximum zoom:', {
           clusterId,
           center: [lng, lat],
           zoom: targetZoom
         });
 
-        map.easeTo({ 
-          center: [lng, lat], 
+        map.easeTo({
+          center: [lng, lat],
           zoom: targetZoom, // Zoom maximum (18) pour un zoom à 100%
           duration: 600 // Animation fluide de 600ms
         });
@@ -390,7 +390,7 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
 
         // Trouver la propriété correspondante
         const property = properties.find(p => p.id === id);
-        
+
         if (!property) {
           console.warn('[MAP] Property not found for id:', id);
           return;
@@ -416,7 +416,7 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
 
         // Zoom maximum (18) pour un zoom à 100% sur le bien
         const targetZoom = 18;
-        
+
         console.debug('[MAP] Zooming to:', {
           center: [lng, lat],
           zoom: targetZoom,
@@ -446,8 +446,8 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
       if (!map) return;
 
       // Vérifier les clusters ET les points individuels
-      const features = map.queryRenderedFeatures(e.point, { 
-        layers: [LAYER_CLUSTERS, LAYER_POINT_BG, LAYER_POINT_LABEL] 
+      const features = map.queryRenderedFeatures(e.point, {
+        layers: [LAYER_CLUSTERS, LAYER_POINT_BG, LAYER_POINT_LABEL]
       });
 
       if (features?.length) {
@@ -518,7 +518,7 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
 
         // Zoom maximum (18) sur le bien sélectionné pour un zoom à 100%
         const targetZoom = 18;
-        
+
         console.debug('[MAP] Selected property changed, zooming to:', {
           propertyId: selectedPropertyId,
           center: [property.lng, property.lat],
@@ -719,7 +719,7 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Photo à droite */}
                   {popup.image && (
                     <div style={{

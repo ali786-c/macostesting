@@ -228,7 +228,7 @@ export default function LocationSearchWithMap({
   const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL ||
     (mapTilerKey
       ? `https://api.maptiler.com/maps/streets-v2/style.json?key=${mapTilerKey}`
-      : 'https://api.maptiler.com/maps/streets-v2/style.json?key=get_your_own_key');
+      : 'https://demotiles.maplibre.org/style.json');
 
   return (
     <div className="flex gap-4 flex-col md:flex-row">
