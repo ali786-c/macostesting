@@ -10,6 +10,10 @@
     <true/>
     <key>uploadBitcode</key>
     <false/>
+    <key>signingStyle</key>
+    <string>manual</string>
+    <key>signingCertificate</key>
+    <string>Apple Distribution</string>
     <key>provisioningProfiles</key>
     <dict>
         <key>com.rentoall.app</key>
