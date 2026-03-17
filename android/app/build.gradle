@@ -4,7 +4,7 @@ android {
     namespace = "com.rentoall.app"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.rentoall.app"
+        applicationId "com.rentoall.fr.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 3
