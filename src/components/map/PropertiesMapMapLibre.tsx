@@ -78,8 +78,11 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
   const [isLocating, setIsLocating] = useState(false);
   const [geolocError, setGeolocError] = useState<string | null>(null);
 
-  // Fallback URL MapLibre Demo (fonctionne sans clé pour validation)
-  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL || 'https://demotiles.maplibre.org/style.json';
+  const mapTilerKey = process.env.NEXT_PUBLIC_MAPTILER_KEY || process.env.VITE_MAPTILER_KEY;
+  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL ||
+    (mapTilerKey
+      ? `https://api.maptiler.com/maps/streets-v2/style.json?key=${mapTilerKey}`
+      : 'https://demotiles.maplibre.org/style.json');
 
   // Handler pour suivre le zoom et notifier le centre après un déplacement de la carte
   const handleMoveEnd = useCallback(() => {
