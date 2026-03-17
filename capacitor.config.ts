@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "com.rentoall.app",
+  appId: "com.rentoall.fr.app",
   appName: "Rentoall",
   webDir: "out",
   server: {

@@ -16,7 +16,7 @@
     <string>Apple Distribution</string>
     <key>provisioningProfiles</key>
     <dict>
-        <key>com.rentoall.app</key>
+        <key>com.rentoall.fr.app</key>
         <string>Rentoall App Store</string>
     </dict>
 </dict>

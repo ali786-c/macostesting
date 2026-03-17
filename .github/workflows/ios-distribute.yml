@@ -40,7 +40,7 @@ jobs:
       - name: Install Provisioning Profile
         uses: apple-actions/download-provisioning-profiles@v3
         with:
-          bundle-id: 'com.rentoall.app'
+          bundle-id: 'com.rentoall.fr.app'
           profile-type: 'IOS_APP_STORE'
           issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
           api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
