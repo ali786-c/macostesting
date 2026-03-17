@@ -23,6 +23,7 @@ jobs:
         run: npm run build:capacitor
         env:
           CAPACITOR_BUILD: '1'
+          NEXT_PUBLIC_MAPTILER_KEY: ${{ secrets.NEXT_PUBLIC_MAPTILER_KEY }}
 
       - name: Sync Capacitor iOS
         run: npx cap sync ios
