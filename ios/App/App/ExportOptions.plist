@@ -10,5 +10,10 @@
     <true/>
     <key>uploadBitcode</key>
     <false/>
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>com.rentoall.app</key>
+        <string>Rentoall App Store</string>
+    </dict>
 </dict>
 </plist>
