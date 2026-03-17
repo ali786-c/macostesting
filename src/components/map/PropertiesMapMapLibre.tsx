@@ -78,7 +78,8 @@ const PropertiesMapMapLibre = forwardRef<PropertiesMapMapLibreRef, PropertiesMap
   const [isLocating, setIsLocating] = useState(false);
   const [geolocError, setGeolocError] = useState<string | null>(null);
 
-  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL;
+  // Fallback URL pour MapTiler (version de secours si secret manquant)
+  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL || 'https://api.maptiler.com/maps/streets-v2/style.json?key=get_your_own_key';
 
   // Handler pour suivre le zoom et notifier le centre après un déplacement de la carte
   const handleMoveEnd = useCallback(() => {

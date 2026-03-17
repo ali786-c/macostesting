@@ -129,6 +129,8 @@
       font-size: 17px;
       line-height: 26px;
       overflow-x: hidden;
+      overscroll-behavior-y: none; /* Désactive le rebond (rubber-banding) sur iOS */
+      touch-action: pan-y; /* Autorise le scroll vertical mais empêche les gestes parasites */
       -webkit-overflow-scrolling: touch;
     }
     h1 { font-size: 1.625rem; line-height: 1.25; }  /* ~27.6px */

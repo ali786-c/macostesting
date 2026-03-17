@@ -27,7 +27,7 @@ function flyToCity(map: maplibregl.Map, { latitude, longitude }: { latitude: num
   console.log('🗺️ [MAP] - Zoom actuel:', map.getZoom());
   console.log('🗺️ [MAP] - Bounds actuel:', map.getBounds());
   console.log('🗺️ [MAP] ========================================');
-  
+
   try {
     map.flyTo({
       center: [longitude, latitude], // MapLibre = [lng, lat]
@@ -35,10 +35,10 @@ function flyToCity(map: maplibregl.Map, { latitude, longitude }: { latitude: num
       duration: 1200,
       essential: true,
     });
-    
+
     console.log('✅ [MAP] flyTo appelé avec succès');
     console.log('✅ [MAP] La carte devrait maintenant zoomer sur:', { latitude, longitude });
-    
+
     // Vérifier après un court délai
     setTimeout(() => {
       console.log('🗺️ [MAP] État de la carte après flyTo:');
@@ -62,12 +62,12 @@ function setCityMarker(
   console.log('📍 [MARKER] ⚡⚡⚡ setCityMarker APPELÉ ⚡⚡⚡');
   console.log('📍 [MARKER] Coordonnées:', { latitude, longitude });
   console.log('📍 [MARKER] Marker précédent existe?', markerRef.current !== null);
-  
+
   if (markerRef.current) {
     console.log('📍 [MARKER] Suppression du marker précédent');
     markerRef.current.remove();
   }
-  
+
   try {
     markerRef.current = new maplibregl.Marker()
       .setLngLat([longitude, latitude])
@@ -154,7 +154,7 @@ export default function LocationSearchWithMap({
       fullCity: city
     });
     console.log('🏙️ [CITY SELECT] ========================================');
-    
+
     // 1) Mettre la valeur dans le champ (comme Airbnb)
     const displayText = `${city.cityName} (${city.postalCode})`;
     console.log('🏙️ [CITY SELECT] Mise à jour du champ input avec:', displayText);
@@ -165,7 +165,7 @@ export default function LocationSearchWithMap({
     // 2) Vérifier que latitude/longitude sont disponibles
     const latitude = city.latitude ?? city.lat;
     const longitude = city.longitude ?? city.lng;
-    
+
     console.log('🏙️ [CITY SELECT] Extraction des coordonnées:');
     console.log('🏙️ [CITY SELECT] - city.latitude:', city.latitude);
     console.log('🏙️ [CITY SELECT] - city.lat:', city.lat);
@@ -184,10 +184,10 @@ export default function LocationSearchWithMap({
     console.log('🗺️ [CITY SELECT] Récupération de l\'instance de la carte...');
     console.log('🗺️ [CITY SELECT] - isMapLoaded:', isMapLoaded);
     console.log('🗺️ [CITY SELECT] - mapRef.current existe?', mapRef.current !== null);
-    
+
     const map = mapRef.current?.getMap();
     console.log('🗺️ [CITY SELECT] - map existe?', map !== null && map !== undefined);
-    
+
     if (!map) {
       console.error('❌ [CITY SELECT] La carte n\'est pas encore initialisée');
       console.error('❌ [CITY SELECT] mapRef.current:', mapRef.current);
@@ -219,16 +219,16 @@ export default function LocationSearchWithMap({
       console.log('🔄 [CITY SELECT] Appel du callback onCitySelect');
       onCitySelect(city);
     }
-    
+
     console.log('🏙️ [CITY SELECT] ========================================');
   };
 
   // Configuration de la carte MapTiler/MapLibre
   const mapTilerKey = process.env.NEXT_PUBLIC_MAPTILER_KEY || process.env.VITE_MAPTILER_KEY;
-  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL || 
-    (mapTilerKey 
-      ? `https://api.maptiler.com/maps/streets/style.json?key=${mapTilerKey}`
-      : 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL');
+  const styleUrl = process.env.NEXT_PUBLIC_MAP_STYLE_URL ||
+    (mapTilerKey
+      ? `https://api.maptiler.com/maps/streets-v2/style.json?key=${mapTilerKey}`
+      : 'https://api.maptiler.com/maps/streets-v2/style.json?key=get_your_own_key');
 
   return (
     <div className="flex gap-4 flex-col md:flex-row">
@@ -248,13 +248,12 @@ export default function LocationSearchWithMap({
               const lat = r.latitude ?? r.lat;
               const lng = r.longitude ?? r.lng;
               const hasCoordinates = lat != null && lng != null;
-              
+
               return (
                 <button
                   key={`${r.postalCode}-${r.cityName}-${r.id}`}
-                  className={`block w-full text-left px-3 py-2 hover:bg-gray-100 transition-colors ${
-                    !hasCoordinates ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
+                  className={`block w-full text-left px-3 py-2 hover:bg-gray-100 transition-colors ${!hasCoordinates ? 'opacity-50 cursor-not-allowed' : ''
+                    }`}
                   onClick={() => {
                     console.log('🖱️ [CLICK] ========================================');
                     console.log('🖱️ [CLICK] Clic sur le bouton ville:', r.cityName);

@@ -1,0 +1,69 @@
+name: iOS Distribute
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Next.js
+        run: npm run build:capacitor
+        env:
+          CAPACITOR_BUILD: '1'
+
+      - name: Sync Capacitor iOS
+        run: npx cap sync ios
+
+      - name: Install CocoaPods
+        run: |
+          cd ios/App
+          pod install
+
+      - name: Install Apple Certificate
+        uses: apple-actions/import-codesign-certs@v3
+        with:
+          p12-file-base64: ${{ secrets.P12_CERTIFICATE_BASE64 }}
+          p12-password: ${{ secrets.P12_PASSWORD }}
+
+      - name: Install Provisioning Profile
+        uses: apple-actions/download-provisioning-profiles@v3
+        with:
+          bundle-id: 'com.rentoall.app'
+          profile-type: 'IOS_APP_STORE'
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-key-content: ${{ secrets.APP_STORE_CONNECT_KEY_CONTENT }}
+
+      - name: Build and Archive
+        run: |
+          xcodebuild -workspace ios/App/App.xcworkspace \
+                     -scheme App \
+                     -configuration Release \
+                     -archivePath App.xcarchive \
+                     archive
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+                     -archivePath App.xcarchive \
+                     -exportOptionsPlist ios/App/App/ExportOptions.plist \
+                     -exportPath build-out
+
+      - name: Upload to App Store Connect
+        uses: apple-actions/upload-testflight-build@v1
+        with:
+          app-path: build-out/App.ipa
+          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}
+          api-key-content: ${{ secrets.APP_STORE_CONNECT_KEY_CONTENT }}
