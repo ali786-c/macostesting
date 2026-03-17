@@ -220,7 +220,7 @@ function LoginForm() {
 
       {/* Main Content - Mobile: Optimisé pour rester fixe et sans scroll */}
       <main className="flex-1 bg-white w-full overflow-hidden touch-none" style={{ paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
-        <div className="flex items-center justify-center h-full px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-center h-full px-3 sm:px-4 md:px-6 lg:px-8 pb-16 sm:pb-20">
           <div className="max-w-md w-full">
             {/* Login Card - Mobile: Compact */}
             <div className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl p-4 sm:p-5 md:p-6 lg:p-8">
